@@ -21,9 +21,27 @@ const Search=()=>{
         // console.log(data)
         setResult(data.query.search)
     }
-    if(term) {
+
+    if(term && !result.length){
         getRes()
+    }else{
+
+        const timerId= setTimeout(() => {
+            if(term) {
+                getRes()
+            }
+            
+        }, 1000);
+        return ()=>{
+            clearTimeout(timerId)
+    
+        }
+
     }
+
+
+  
+  
 
 
     },[term])
