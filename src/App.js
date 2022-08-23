@@ -1,9 +1,10 @@
 
-// import './App.css';
+import './App.css';
 import { useState } from 'react';
 import Accordion from './components/Accordion';
 import Dropdown from './components/Dropdown';
 import Search from './components/Search';
+import Translate from './components/Translate';
 
 function App() {
 //Acordion
@@ -35,11 +36,11 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className="App container">
       {/* <Accordion data={data}/> */}
       {/* <Search/> */}
-      <Dropdown options={dropData} select={select} setSelect={setSelect}/>
-
+      {/* <Dropdown label="Select a Color" options={dropData} select={select} setSelect={setSelect}/> */}
+<Translate label="Text area"/>
    
     </div>
   );

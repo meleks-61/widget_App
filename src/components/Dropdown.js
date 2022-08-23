@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-const Dropdown = ({ options, select, setSelect }) => {
+const Dropdown = ({ options, select, setSelect,label }) => {
   const [open, setOpen] = useState(false);
   //dropdown dışında herhangi bir yere tıkladıgında da dropdown kapansın ama alt divlerdeki işlevi etkilemesin bu tıklama
 const ref=useRef()
@@ -30,12 +30,7 @@ const ref=useRef()
 
   },[])
 
-// const onChangeColor=()=>{
-//     // 
-//     document.body.display.style.color="red"
 
-
-// }
 
 
 
@@ -50,7 +45,7 @@ const ref=useRef()
     }
 
     return (
-      <div className="item" key={op.value} style={{backgroundColor:op.value}} onClick={()=>setSelect(op)}>
+      <div className="item" key={op.value}  onClick={()=>setSelect(op)}>
         {op.label}
       </div>
     );
@@ -59,8 +54,8 @@ const ref=useRef()
   return (
     <div className="ui form" ref={ref}>
       <div className="field">
-        <label className="label">Select Color</label>
-        <div className={`ui selection dropdown ${open ? "visible active":""}`} style={{backgroundColor:select.value}} onClick={()=>setOpen(!open)}>
+        <label className="label">{label}</label>
+        <div className={`ui selection dropdown ${open ? "visible active":""}`}  onClick={()=>setOpen(!open)}>
           <i className="dropdown icon"></i>
           <div className="text" >{select.label}</div>
           <div className={`menu ${open ? "visible transition":""}`}  >{renderList}</div>
