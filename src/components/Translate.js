@@ -10,7 +10,7 @@ const Translate = ({ label }) => {
   const[lang,setLang]= useState(options[0])
 
   return (
-    <div>
+    <div className="container2">
     <div className="ui form">
       <div className="field">
       <Flower className="flower-right" fill="rgb(110, 146, 119)" />
@@ -26,7 +26,7 @@ const Translate = ({ label }) => {
 
     <Dropdown options={options} select={lang} setSelect={setLang} label="Select a Language"/>
     <div >
-        <h1>Output</h1>
+        
         <Convert lang={lang} text={text}/>
     </div>
     </div>

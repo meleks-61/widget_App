@@ -1,58 +1,45 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const Convert =({lang,text})=>{
-    const[translated, setTranslated]=useState("")
-    const[debounced,setDebounced]=useState(text)
+const Convert = ({ lang, text }) => {
+  const [translated, setTranslated] = useState("");
+  const [debounced, setDebounced] = useState(text);
 
-    const Url = "https://translation.googleapis.com/language/translate/v2";
-    const KEY = "AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM";
+  const Url = "https://translation.googleapis.com/language/translate/v2";
+  const KEY = "AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM";
 
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setDebounced(text);
+    }, 500);
 
-    useEffect(()=>{
-     const timerId = setTimeout(()=>{
-            setDebounced(text)
-
-        },500);
-
-        return ()=>{
-        clearTimeout(timerId)
+    return () => {
+      clearTimeout(timerId);
     };
+  }, [text]);
 
-
-
-    },[text])
-
-
-
-
-    useEffect(()=>{
-        const doTranslate = async()=>{
-          const {data} =  await axios.post(Url,{},{
-                params:{
-                    q:debounced,
-                    target:lang.value,
-                    key:KEY
-                }
-            })
-            setTranslated(data.data.translations[0].translatedText)
-
+  useEffect(() => {
+    const doTranslate = async () => {
+      const { data } = await axios.post(
+        Url,
+        {},
+        {
+          params: {
+            q: debounced,
+            target: lang.value,
+            key: KEY,
+          },
         }
-doTranslate()
+      );
+      setTranslated(data.data.translations[0].translatedText);
+    };
+    doTranslate();
+  }, [lang, debounced]);
 
-
-
-
-    },[lang,debounced])
-
-
-
-
-
-    return(
-        <div className="translate">
-<h1>{translated}</h1>
-        </div>
-    )
-}
+  return (
+    <div className="translate">
+      <h1>{translated}</h1>
+    </div>
+  );
+};
 export default Convert;
