@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { queryAllByAltText } from "@testing-library/react";
+
 import Results from "./Results";
 const Search=()=>{
 
